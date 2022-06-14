@@ -1,0 +1,78 @@
+# 2022/06/14 - Microscope development meeting
+
+## Attendees
+
+Attending:
+
+- Ian Dobbie
+- Veronika Pfannenstill 
+- David Pinto
+- Tom Fish
+- Jacopo Abramo
+
+# Notes
+
+- started with a chat about some updates that Ian has done, including
+  the new trails view - Cant be turned on or off through doesn't work
+  properly in mosaic
+
+
+- Tom's issue:- Switch between lasers and the 561 shutter starts to
+  alarm with a loud alarm beep. Definitely an SR 470 issue as the
+  laser and the shutter don't fully talk to each other. Tom thinks its
+  a thread issue with the cockpit control device module.
+
+- Jacopo asks if we know about the CZI grant for python-microscope
+  integration into ImSwitch and UC2. Ian and David both talked to
+  Xavier about and Ian wrote a letter of support for the grant. 
+
+- JA also interested in trying to integrate ImSwitch and
+  Python-microscope into Napari.
+
+- David has some proof of concept code at
+  https://github.com/carandraug/napari-microscope A thin wrapper to
+  integrate the basic microscopes GUI controls into Napari.
+
+- Jacopo says Napari has a new plugin architecture.
+
+- JA asks about free running on the Ximea camera. He will add a link
+  to his branch to the relevant issue on GitHub
+
+- JA wants to get real cycle times from the camera. The Ximea camera
+  dll returns both an image and a time stamp.
+
+- David suggests that the Ximea driver should reimplement the fetch_loop
+  method to return the dll provided time stamp.
+
+- Jacopo wants to add interactive actions to microscope. Add flatfield
+  correction to ImSwitch.
+
+- Ian suggested using a microscope controller object to connect both a
+  light source and a camera.
+
+- Ximea API allows upload of a correction file to the camera FPGA to get
+  effective hardware flat field correction. Ian says this should be
+  added as a Ximea specific option through the settings interface. 
+
+- JA release updated cockpit and microscope, we should!
+
+- Veronika: hardware triggers. Wanted advise about digital versus
+  analogue triggers for laser triggers.
+
+- Ian said that analog triggers are not implemented for light sources
+  in cockpit so advises digital. However do take care as the low input
+  impedance of the laser triggers can mean they draw too much current
+  to be directly triggered by the Red Pitaya, may need a level shifter
+  and the ability to push more power. The DeepSIM and CryoSIM setups
+  use pullup resistors to drive more power through the output signals.
+
+- Tom: DLL on windows fix for microscope that is still in the issues.
+
+
+
+
+
+
+
+
+
